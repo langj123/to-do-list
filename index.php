@@ -9,10 +9,9 @@
 
 <body>
     <div class="wrapper">
-        <head>
+        <header class="main-head">
             <h1>To Do Lists <button id="To-Do-Generator">Add a To Do List</button></h1>
-        </head>
-        
-    </div>
+        </header><!-- .main-head -->
+    </div><!-- .wrapper -->
 </body>
 </html>
