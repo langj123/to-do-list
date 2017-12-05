@@ -14,4 +14,5 @@
         </header><!-- .main-head -->
     </div><!-- .wrapper -->
 </body>
+<script type="text/javascript" src="js/list-gen.js"></script>
 </html>
