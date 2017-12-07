@@ -39,9 +39,15 @@ body {
 .button.plus {
 	background: #1551d8;
 }
-.button.cancel-item {
+.button.cancel-item, .button.cancel-to-do {
 	background: #d8153a;
 	min-width: auto;
+	margin-left: 0;
+}
+.button.one-item {
+	background: #1551d8;
+	min-width: 130px;
+	margin-left: 0;
 }
 .hide {
 	display: none;
@@ -139,9 +145,10 @@ body {
 textarea.to-do-name {
 	width: 100%;
 	resize: none;
-	height: 25px;
+	height:38px;
 	line-height: 25px;
 	padding: 4px;
 	border-radius: 4px;
 	border: 1px solid #aaa;
+	box-sizing: border-box;
 }

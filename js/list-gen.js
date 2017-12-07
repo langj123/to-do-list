@@ -15,6 +15,14 @@ function ListCreator(button, append) {
 ListCreator.method('setControls', function(button, append){
 	this.button = button;
 	this.append = append;
+	this.date;
+	this.year;
+	this.month;
+	this.day;
+	this.utc;
+	this.hours;
+	this.seconds;
+	this.minutes;
 	this.createItem();
 	return this;
 });
@@ -36,6 +44,9 @@ ListCreator.method('addItem', function(){
 	var col2 = document.createElement('div');
 	var check = document.createElement('input');
 	var label = document.createElement('label');
+	var p = document.createElement('p');
+	var sub = document.createElement('input');
+	var can = document.createElement('button');
 
 	label.innerText = 'Item to add';
 	textarea.setAttribute('placeholder', 'Add a to do...');
@@ -46,11 +57,20 @@ ListCreator.method('addItem', function(){
 	col2.setAttribute('class', 'col-2');
 	div.setAttribute('class', 'list-wrap')
 	wrap.setAttribute('class', 'list-cont');
+	p.setAttribute('class', 'submit');
+	can.setAttribute('class', 'button cancel-to-do');
+	sub.setAttribute('type', 'submit');
+    sub.setAttribute('class', 'button one-item');
+	sub.value = 'Add this to do';
+	can.innerText = "I'm done adding Items";
+	p.appendChild(sub);
+	p.appendChild(can);
 	wrap.appendChild(h2);
 	wrap.appendChild(div);
 	div.appendChild(form);
 	form.appendChild(col1);
 	form.appendChild(col2);
+	form.appendChild(p);
 	col1.appendChild(check);
 	col1.appendChild(label);
 	col2.appendChild(textarea);
@@ -76,6 +96,16 @@ ListCreator.method('handleEvent', function(event){
 });
 
 ListCreator.method('appendItems', function(){
+	this.date = new Date();
+    this.day = this.date.getDate();
+    this.year = this.date.getFullYear();
+    this.mon = this.date.getMonth();
+    this.mil = this.date.getMilliseconds();
+    this.sec = this.date.getSeconds();
+    this.hours = this.date.getHours();
+    this.min = this.date.getMinutes();
+    this.utc = Date.UTC(this.year, this.mon, this.day);
+    this.utc = this.utc + (this.hours * 60 * 60 * 1000) + (this.min * 60 * 1000) + (this.sec * 1000);
 	this.button.className += ' hide';
     var item = document.createElement("div");
     var form = document.createElement("form");
@@ -92,6 +122,10 @@ ListCreator.method('appendItems', function(){
     h2.setAttribute("class", "to-do-gen");
     form.setAttribute("id", "ListGenerator");
     input.setAttribute("value", "Give the list a title");
+    form.setAttribute("data-year", this.year);
+    form.setAttribute("data-month", this.mon);
+    form.setAttribute("data-day", this.day);
+    form.setAttribute("data-utc", this.utc);
     can.setAttribute("class", "cancel-item button");
     can.innerText = "Cancel";
     h2.appendChild(input);
